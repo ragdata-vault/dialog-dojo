@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if test $# != 0
+then
+	count=$1
+else
+	count=10
+fi
+
+while test $count != 0
+do
+	echo "** $count -- `date`"
+	w >&2
+	sleep 1
+count=$((count - 1 2>/dev/null)) `
+	test -z "$count" && count=0
+done

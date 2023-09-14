@@ -3,8 +3,7 @@
 
 . /usr/local/lib/dd/setup-vars
 
+left=10
+unit="secs"
 
-
-retval=$?
-
-. /usr/local/lib/dd/read-result
+while [[ "$left" != 0 ]]

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+. /usr/local/lib/dd/setup-vars
+
+exec 3<&0
+PCT=10
+(
+sleep 1
+while [[ $PCT -ne 110 ]]
+do
+	cat << EOF
+XXX
+$PCT
+The new\n\
+message ($PCT percent)
+XXX
+EOF
+	PCT=$((PCT + 10))
+	sleep 1
+done
+) | "$DIALOG" --title "${DIALOG_TITLE}" --input-fd 3 "$@" --gauge "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" 0
+
+exec 3<&-

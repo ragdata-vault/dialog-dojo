@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2154,SC2034
 
 # REPORT RESULTS FROM EDITING
 
 case "${retval:-0}" in
 	"$DIALOG_OK")
-		diff -c "${input:-input}" "${output:-output}"
-		echo "OK";;
+		diff -c "${input:-input}" "${output:-output}";;
 	"$DIALOG_CANCEL")
-		echo "Cancelled";;
+		exit "$DIALOG_CANCEL";;
 	"$DIALOG_ESC")
-		echo "ESC pressed";;
+		if [[ -s "$output" ]]; then
+			diff -c "${input:-input}" "${output:-output}"
+		else
+			exit "$DIALOG_ESC"
+		fi;;
 esac

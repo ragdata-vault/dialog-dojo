@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034
 
-. ./src/etc/dlg/setup-vars
-. ./src/etc/dlg/setup-tempfile
+. /usr/local/lib/dd/setup-vars
 
 RESULT=$($DIALOG --ok-label "${OK_LABEL:-OK}" \
 	--cancel-label "${CANCEL_LABEL:-Cancel}" \
@@ -12,4 +11,4 @@ RESULT=$($DIALOG --ok-label "${OK_LABEL:-OK}" \
 
 retval=$?
 
-. ./src/etc/dlg/read-result
+. /usr/local/lib/dd/read-result

@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2154,SC2034
 
 # REPORT RESULTS IN TEMPORARY FILE
 
 case "${retval:-0}" in
 	"$DIALOG_OK")
-		OUTPUT="$(cat "$tempfile")";;
+		RESULT="$(cat "$tempfile")";;
 	"$DIALOG_CANCEL")
 		exit "$DIALOG_CANCEL";;
 	"$DIALOG_ESC")

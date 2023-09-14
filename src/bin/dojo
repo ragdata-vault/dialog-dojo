@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+# ==================================================================
+# dojo
+# ==================================================================
+# Dialog Dojo Installer
+#
+# File:         dojo
+# Author:       Ragdata
+# Date:         14/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+# PREFLIGHT
+# ==================================================================
+# set debug mode = false
+declare -gx DOJO_DEBUG=0
+# if script is called with 'debug' as an argument, then set debug mode
+if [[ "${1,,}" == "debug" ]]; then shift; DOJO_DEBUG=1; set -- "${@}"; set -axeET; else set -aeET; fi
+# ==================================================================
+# VARIABLES
+# ==================================================================
+#
+# PACKAGE VERSION
+#
+declare -gx DOJO_VERSION="0.1.0"
+declare -gx DOJO_BUILD="1001"
+declare -gx DOJO_BUILD_DATE="20230818:0426"
+# ==================================================================
+# FUNCTIONS
+# ==================================================================
+# ------------------------------------------------------------------
+# dojo::version
+# ------------------------------------------------------------------
+# @description Reports the version and build date of this release
+#
+# @noargs
+#
+# @stdout Version, Copyright, & Build Information
+# ------------------------------------------------------------------
+dojo::version()
+{
+	local verbosity="${1:-}"
+
+	if [[ -z "$verbosity" ]]; then
+		echo "${DOJO_VERSION}"
+	else
+		echo
+		echo "Dialog Dojo"
+		echoWhite "Dialog Dojo ${DOJO_VERSION}"
+		echo "Copyright © 2022-2023 Darren (Ragdata) Poulton"
+		echo "Build: ${DOJO_BUILD}"
+		echo "Build Date: ${DOJO_BUILD_DATE}"
+		echo
+	fi
+}
+# ==================================================================
+# MAIN
+# ==================================================================
+options=$(getopt -l "version::" -o "v::" -a -- "$@")
+
+eval set --"$options"
+
+while true
+do
+	case "$1" in
+		-v|--version)
+			if [[ -n "${2}" ]]; then
+				dojo::version "${2}"
+				shift 2
+			else
+				dojo::version
+				shift
+			fi
+			exit 0
+			;;
+		--)
+			shift
+			break
+			;;
+		*)
+			echoError "Invalid Argument!"
+			exit 2
+			;;
+	esac
+done

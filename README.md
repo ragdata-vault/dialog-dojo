@@ -190,6 +190,9 @@ It's not just contributions of code that I'm looking for.  If you have any ideas
 
 This project incorporates ideas and / or code crafted by the following talented individuals:
 
+- [tolik-punkoff/dialog-examples](https://github.com/tolik-punkoff/dialog-examples)<br />
+  Copyright (C) 2019 Tolik Punkoff<br />
+  LGPL Licensed
 
 > "We see much further, and reach much higher,<br>only because we stand upon the shoulders of giants"
 

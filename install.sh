@@ -214,7 +214,46 @@ scriptDir() { printf '%s' "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"; }
 # ------------------------------------------------------------------
 install::install()
 {
-	local
+	local REPO
+	local -a dirs=("bin" "cfg" "lib" "opt")
+
+	if [[ -f ./README.md ]]; then
+		REPO="$(scriptDir)"
+	else
+		REPO="$(mktemp -d -t dd-XXXXXX)"
+		# @TODO - Replace with package download once released
+		git clone git@github.com:ragdata/dialog-dojo "$REPO"
+	fi
+
+	for dir in "${dirs[@]}"
+	do
+		case "$dir" in
+			bin)
+				for file in "$REPO"/src/bin/*
+				do
+					install -v -b -C -D -t /usr/local/bin "$file"
+				done;;
+			cfg)
+				for file in "$REPO"/src/cfg/*
+				do
+					install -v -b -C -D -t /opt/dd/cfg "$file"
+				done;;
+			lib)
+				for file in "$REPO"/src/lib/*
+				do
+					install -v -b -C -D -t /usr/local/lib/dd "$file"
+				done;;
+			opt)
+				for file in "$REPO"/src/opt/*
+				do
+					install -v -b -C -D -t /opt/dd "$file"
+				done;;
+		esac
+	done
+
+	clear
+
+	install::returnQuit
 }
 # ------------------------------------------------------------------
 # install::uninstall
@@ -265,7 +304,7 @@ install::quit()
     echoGold "Program terminated at user request"
     echo
 
-    tput cnorm
+    # tput cnorm
 
     exit 0
 }
@@ -345,11 +384,11 @@ do
 			;;
 		--)
 			shift
-			tput civis
+			# tput civis
 
 			install::menu
 
-			tput cnorm
+			# tput cnorm
 			break
 			;;
 		*)

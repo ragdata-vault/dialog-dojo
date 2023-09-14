@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034
 
-. ./src/etc/dlg/setup-vars
-. ./src/etc/dlg/setup-tempfile
+. /usr/local/lib/dd/setup-vars
 
 DD="$(date +%d)"
 MM="$(date +%m)"
@@ -18,4 +17,4 @@ RESULT=$($DIALOG --stdout \
 
 retval=$?
 
-. ./src/etc/dlg/read-result
+. /usr/local/lib/dd/read-result

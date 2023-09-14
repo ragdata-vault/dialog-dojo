@@ -1,1 +1,10 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+. /usr/local/lib/dd/setup-vars
+
+RESULT=$("$DIALOG" --title "${DIALOG_TITLE}")
+
+retval=$?
+
+. /usr/local/lib/dd/read-result

@@ -1,1 +1,10 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+. /usr/local/lib/dd/setup-vars
+
+
+
+retval=$?
+
+. /usr/local/lib/dd/read-result

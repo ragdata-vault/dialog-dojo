@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+. /usr/local/lib/dd/setup-vars
+
+retval=0
+
+while [[ "$retval" -ne 1 ]] && [[ "$retval" -ne 254 ]]
+do
+	retval=$?
+	exec 3>&1
+	RESULT=$("$DIALOG" --ok-label "Submit" --title "Mixed Form Demo" \
+		--backtitle "DIALOG DOJO DEMOS" --insecure "$@" \
+		--mixedform "Here's an idea of how you can use this dialog:" 20 50 0 \
+		"Username		:" 1 1 "Ragdata" 	1 20 10 0 2 \
+		"Password		:" 2 1 ""			2 20  8 0 1 \
+		"Password Again	:" 3 1 ""			3 20  8 0 1 \
+		"HOME			:" 4 1 "Cisco"		4 20 40 0 0 2>&1 1>&3)
+	retval=$?
+	exec 3>&-
+	case "$retval" in
+		"$DIALOG_CANCEL")
+			"$DIALOG" --clear \
+				--yesno "Really quit?" 10 30
+			case $? in
+				"$DIALOG_OK")
+					break
+					;;
+				"$DIALOG_CANCEL")
+					retval=99
+					;;
+			esac
+			;;
+		"$DIALOG_OK")
+			"$DIALOG" --clear \
+				--no-collapse --cr-wrap \
+				--msgbox "Form Data:\n\
+				$RESULT" 10 40
+			;;
+		"$DIALOG_HELP")
+			echo "HELP"
+			exit
+			;;
+		*)
+			echo "Code returned was '$retval'"
+			exit
+			;;
+	esac
+done

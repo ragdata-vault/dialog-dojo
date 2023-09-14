@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+. /usr/local/lib/dd/setup-vars
+
+background="An example of --mixedgauge usage"
+
+for i in 5 10 20 30 40 50 60 70 80 90 100
+do
+	"$DIALOG" --backtitle "$background" \
+		--title "Mixed Gauge Demo" "$@" \
+		--mixedgauge "This is a demo of a prompt message,\nand this is its second line" 0 0 33 \
+		"Process ONE"	"0" \
+		"Process TWO"	"1" \
+		"Process THREE"	"2" \
+		"Process FOUR"	"3" \
+		""	"8" \
+		"Process FIVE"	"5" \
+		"Process SIX"	"6" \
+		"Process SEVEN"	"7" \
+		"Process EIGHT"	"8" \
+		"Process NINE"	"-$i"
+sleep 1
+done
