@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+input=$(mktemp 2>/dev/null) || input=/tmp/input$$
+output=$(mktemp 2>/dev/null) || output=/tmp/test$$
+
+trap 'rm -f $input $output' "$SIG_NONE" "$SIG_HUP" "$SIG_INT" "$SIG_QUIT" "$SIG_TERM"

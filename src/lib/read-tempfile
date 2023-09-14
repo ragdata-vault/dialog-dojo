@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# REPORT RESULTS IN TEMPORARY FILE
+
+case "${retval:-0}" in
+	"$DIALOG_OK")
+		OUTPUT="$(cat "$tempfile")";;
+	"$DIALOG_CANCEL")
+		exit "$DIALOG_CANCEL";;
+	"$DIALOG_ESC")
+		if [[ -s "$tempfile" ]]; then
+			cat "$tempfile"
+		else
+			exit "$DIALOG_ESC"
+		fi;;
+esac

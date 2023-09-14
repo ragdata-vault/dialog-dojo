@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2269
+
+case "${retval:-0}" in
+	"$DIALOG_OK")
+		RESULT="$RESULT";;
+	"$DIALOG_CANCEL")
+		exit "$DIALOG_CANCEL";;
+	"$DIALOG_ESC")
+		if [[ -n "$RESULT" ]]; then
+			RESULT="$RESULT"
+		else
+			exit "$DIALOG_ESC"
+		fi;;
+esac

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+case none"$LANG$LC_ALL$LC_CTYPE" in
+	*UTF-8*)
+		;;
+	*)
+		echo "This script MUST be run in a UTF-8 Locale"
+		exit 1
+		;;
+esac

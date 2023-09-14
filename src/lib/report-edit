@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# REPORT RESULTS FROM EDITING
+
+case "${retval:-0}" in
+	"$DIALOG_OK")
+		diff -c "${input:-input}" "${output:-output}"
+		echo "OK";;
+	"$DIALOG_CANCEL")
+		echo "Cancelled";;
+	"$DIALOG_ESC")
+		echo "ESC pressed";;
+esac
