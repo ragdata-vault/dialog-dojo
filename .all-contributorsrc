@@ -3,7 +3,7 @@
   "projectOwner": "Ragdata",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "files": ["CONTRIBUTORS.md"],
+  "files": [".github/CONTRIBUTORS.md"],
   "imageSize": 100,
   "commit": true,
   "commitConvention": "angular",
