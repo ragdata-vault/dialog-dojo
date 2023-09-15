@@ -31,13 +31,13 @@
 
 </div>
 
-<h3 align="center">
+<h4 align="center">
 
 If you like this repository, please give it a ⭐ (it really does help)
 
 <img alt="GitHub repository stars" src="https://img.shields.io/github/stars/ragdata/dialog-dojo?style=social">
 
-</h3>
+</h4>
 
 <h2><a name="toc">📖 Table of Contents</a></h2>
 
