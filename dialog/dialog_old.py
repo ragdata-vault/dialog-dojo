@@ -65,9 +65,9 @@ from time import sleep
 #
 # Path of the dialog executable
 #
-DIALOG = os.getenv("DIALOG");
+DIALOG = os.getenv("DIALOG")
 if DIALOG is None:
-	DIALOG = "../dialog";
+	DIALOG = "../dialog"
 
 
 class Dialog:
@@ -85,13 +85,15 @@ class Dialog:
 		output = f.readlines()
 		f.close()
 		os.unlink(fName)
-		return (rv, output)
+		return rv, output
 
-	def __perform_no_options(self, cmd):
+	@staticmethod
+	def __perform_no_options(cmd):
 		"""Call dialog w/out passing any more options. Needed by --clear."""
 		return os.system(DIALOG + ' ' + cmd)
 
-	def __handleTitle(self, title):
+	@staticmethod
+	def __handleTitle(title):
 		if len(title) == 0:
 			return ''
 		else:
