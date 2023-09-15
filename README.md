@@ -27,7 +27,7 @@
 
 #### _Elapsed Project Time_
 
-[![wakatime](https://wakatime.com/badge/github/Ragdata/dialog-dojo.svg?style=for-the-badge)](https://wakatime.com/badge/github/Ragdata/dialog-dojo)
+[![wakatime](https://wakatime.com/badge/user/7e04d9d4-3a44-495e-b622-69fdbafd036c/project/f874eedf-d099-4fc2-8586-6706c3b21efb.svg?style=for-the-badge)](https://wakatime.com/badge/user/7e04d9d4-3a44-495e-b622-69fdbafd036c/project/f874eedf-d099-4fc2-8586-6706c3b21efb)
 
 </div>
 
@@ -108,6 +108,7 @@ bash <(curl -sfLS https://raw.githubusercontent.com/Ragdata/dialog-dojo/master/i
 - [**The RedEyed Community Discord Server**](https://discord.gg/s6gZZUc67y)
 
 - [Community Support Document](https://github.com/ragdata/.github/blob/master/.github/SUPPORT.md)
+- [Community Governance Policy](https://github.com/ragdata/.github/blob/master/.github/GOVERNANCE.md)
 - [Community Code of Conduct](https://github.com/ragdata/.github/blob/master/.github/CODE_OF_CONDUCT.md)
 - [Community Standards](https://github.com/ragdata/dialog-dojo/community)
 - [Security Policy](https://github.com/ragdata/dialog-dojo/security/policy)
@@ -166,7 +167,7 @@ bash <(curl -sfLS https://raw.githubusercontent.com/Ragdata/dialog-dojo/master/i
 
 ## 🔐 [Security](#toc)
 
-While I always good security practices, 100% security can never be guaranteed in any software package.  The `Repository Template` is provided AS IS, and without warranty.  You can find more details in the [LICENSE](LICENSE) file included with this repository.
+While I always follow good security practices, 100% security can never be guaranteed in any software package.  The `Dialog Dojo` is provided AS IS, and without warranty.  You can find more details in the [LICENSE](LICENSE) file included with this repository.
 
 If you discover any issue regarding the security of this project, please disclose that information responsibly by sending a [security advisory][advisory].  **PLEASE DO NOT CREATE AN ISSUE OR DISCUSSION TOPIC.**  You can read more about this project's security policies [HERE][security]
 
@@ -175,26 +176,23 @@ If you discover any issue regarding the security of this project, please disclos
 ## 💎 [Contributors](#toc)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/github/all-contributors/ragdata/dialog-dojo?color=ee8449&style=for-the-badge)](CONTRIBUTORS.md)
+[![All Contributors](https://img.shields.io/github/all-contributors/ragdata/dialog-dojo?color=ee8449&style=for-the-badge)](.github/CONTRIBUTORS.md)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-If you'd like to make a contribution, then please see the [**Bash Bits Contributor's Guide**][contributing]
+If you'd like to make a contribution, then please see the [**Dialog Dojo Contributor's Guide**][contributing]
 
 It's not just contributions of code that I'm looking for.  If you have any ideas or suggestions about how this project may be improved, don't hesitate to [open an issue][issues] and let me know!  Contributions of ALL kinds will be recognised here if they are made part of this project - thanks to the [All-Contributors][all-contributors] bot.
 
-[**VIEW PROJECT CONTRIBUTORS**](CONTRIBUTORS.md)
+[**VIEW ALL PROJECT CONTRIBUTORS**](.github/CONTRIBUTORS.md)
 
 [`^ Top`](#toc)
 
-## ©️ [Copyright & Attributions](#toc)
+## ©️ [Acknowledgements & Attributions](#toc)
 
-This project incorporates ideas and / or code crafted by the following talented individuals:
+As with most open-source projects, this one could not have happened without the work of those who preceded us.  [**View Acknowledgements & Attributions**](ACKNOWLEDGEMENTS.md)
 
-- [tolik-punkoff/dialog-examples](https://github.com/tolik-punkoff/dialog-examples)<br />
-  Copyright (C) 2019 Tolik Punkoff<br />
-  LGPL Licensed
-
-> "We see much further, and reach much higher,<br>only because we stand upon the shoulders of giants"
+> <h4 align="center">"We see much further, and reach much higher,<br />
+> because we stand upon the shoulders of giants"</h4>
 
 [`^ Top`](#toc)
 
