@@ -39,48 +39,31 @@ If you like this repository, please give it a ⭐ (it really does help)
 
 </h3>
 
-<details><summary><h2><a name="toc">📖 Table of Contents</a></h2></summary>
+<h2><a name="toc">📖 Table of Contents</a></h2>
 
 - [Project Overview](#-project-overview)
-  - [Branch Reliability](#branch-reliability) 
-- [What's Included?](#-whats-included)
-- [Installation](#-installation)
-- [Badges](#-badges)
+  - [What's Included?](#-whats-included)
+  - [Installation](#-installation)
 - [Available Support](#-available-support)
+  - [Project Resources](#project-resources)
+  - [Community Resources](#community-resources)
+- [Security](#-security)
 - [Project Supporters](#-project-supporters)
 - [Author/Maintainer](#-author--maintainer)
-- [Security](#-security)
 - [Contributors](#-contributors)
 - [Copyright & Attributions](#-copyright--attributions)
 - [License](#-license)
 - [Resources](#-resources)
 
-</details>
 
 ## ⭐ [Project Overview](#toc)
 
-### [Branch Reliability](#toc)
 
-The Branch Reliability Table is a way for you to determine how close to the bleeding edge you're comfortable getting.
-
-If you need stability, then download a branch marked with 🟢
-
-If you're contributing code to the project, you'll want 🔴
-
-| Branch               |    Stability    | Code Age         | Reliability |
-|----------------------|:---------------:|------------------|:-----------:|
-| `master`             |  latest stable  | latest release   |     🟢      |
-| `develop`            | latest unstable | most recent code |     🔴      |
-
-[`^ Top`](#toc)
-
-## ❓ [What's Included?](#toc)
+### ❓ [What's Included?](#toc)
 
 
 
-[`^ Top`](#toc)
-
-## 📂 [Installation](#toc)
+### 📂 [Installation](#toc)
 
 Run the code snippet below in your terminal to setup and install everything automagically - ready to go in 2 minutes!
 
@@ -88,9 +71,8 @@ Run the code snippet below in your terminal to setup and install everything auto
 bash <(curl -sfLS https://raw.githubusercontent.com/Ragdata/dialog-dojo/master/install.sh)
 ```
 
-[`^ Top`](#toc)
-
-## 📛 [Badges](#toc)
+[//]: # ([`^ Top`]&#40;#toc&#41;)
+[//]: # (### 📛 [Badges]&#40;#toc&#41;)
 
 
 
@@ -98,12 +80,13 @@ bash <(curl -sfLS https://raw.githubusercontent.com/Ragdata/dialog-dojo/master/i
 
 ## 💪 [Available Support](#toc)
 
-### Project Resources
+### 🔸Project Resources
 
+- [**Repository Documentation**](doc/README.md)
 - [Issues Register](https://github.com/ragdata/dialog-dojo/issues)
 - [Project Site](https://ragdata.github.io/dialog-dojo)
 
-### Community Resources
+### 🔸Community Resources
 
 - [**The RedEyed Community Discord Server**](https://discord.gg/s6gZZUc67y)
 
@@ -115,6 +98,14 @@ bash <(curl -sfLS https://raw.githubusercontent.com/Ragdata/dialog-dojo/master/i
 	- [Security Overview](https://github.com/ragdata/dialog-dojo/security)
 	- [Security Advisories](https://github.com/ragdata/dialog-dojo/security/advisories)
 	- [Dependabot Alerts](https://github.com/ragdata/dialog-dojo/security/dependabot)
+
+[`^ Top`](#toc)
+
+## 🔐 [Security](#toc)
+
+While I always follow good security practices, 100% security can never be guaranteed in any software package.  The `Dialog Dojo` is provided AS IS, and without warranty.  You can find more details in the [LICENSE](LICENSE) file included with this repository.
+
+If you discover any issue regarding the security of this project, please disclose that information responsibly by sending a [security advisory][advisory].  **PLEASE DO NOT CREATE AN ISSUE OR DISCUSSION TOPIC.**  You can read more about this project's security policies [HERE][security]
 
 [`^ Top`](#toc)
 
@@ -165,14 +156,6 @@ bash <(curl -sfLS https://raw.githubusercontent.com/Ragdata/dialog-dojo/master/i
 
 [`^ Top`](#toc)
 
-## 🔐 [Security](#toc)
-
-While I always follow good security practices, 100% security can never be guaranteed in any software package.  The `Dialog Dojo` is provided AS IS, and without warranty.  You can find more details in the [LICENSE](LICENSE) file included with this repository.
-
-If you discover any issue regarding the security of this project, please disclose that information responsibly by sending a [security advisory][advisory].  **PLEASE DO NOT CREATE AN ISSUE OR DISCUSSION TOPIC.**  You can read more about this project's security policies [HERE][security]
-
-[`^ Top`](#toc)
-
 ## 💎 [Contributors](#toc)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -212,7 +195,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## 📖 [Resources](#toc)
 
-
+- [Documentation / Man Pages](https://invisible-island.net/dialog/manpage/dialog.html)
+- [Scripting Examples @ GitHub](https://github.com/tolik-punkoff/dialog-examples)
+- [Website of dialog Author - Thomas E. Dickey](https://invisible-island.net/)
 
 [`^ Top`](#toc)
 
