@@ -31,14 +31,6 @@
 
 </div>
 
-<h4 align="center">
-
-If you like this repository, please give it a ⭐ (it really does help)
-
-<img alt="GitHub repository stars" src="https://img.shields.io/github/stars/ragdata/dialog-dojo?style=social">
-
-</h4>
-
 <h2><a name="toc">📖 Table of Contents</a></h2>
 
 - [Project Overview](#-project-overview)
@@ -55,6 +47,16 @@ If you like this repository, please give it a ⭐ (it really does help)
 - [License](#-license)
 - [Resources](#-resources)
 
+
+<br />
+
+<h4 align="center">
+
+If you like this repository, please give it a ⭐ (it really does help)
+
+<img alt="GitHub repository stars" src="https://img.shields.io/github/stars/ragdata/dialog-dojo?style=social">
+
+</h4>
 
 ## ⭐ [Project Overview](#toc)
 
@@ -174,6 +176,10 @@ It's not just contributions of code that I'm looking for.  If you have any ideas
 ## ©️ [Acknowledgements & Attributions](#toc)
 
 As with most open-source projects, this one could not have happened without the work of those who preceded us.  [**View Acknowledgements & Attributions**](ACKNOWLEDGEMENTS.md)
+
+- [tolik-punkoff/dialog-examples](https://github.com/tolik-punkoff/dialog-examples)<br />
+  Copyright © 2019 Tolik Punkoff<br />
+  LGPL Licensed
 
 > <h4 align="center">"We see much further, and reach much higher,<br />
 > because we stand upon the shoulders of giants"</h4>
