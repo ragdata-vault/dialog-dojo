@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --infobox text height width
 
 An  info box is basically a message box.  However, in this case,
@@ -25,7 +25,7 @@ time to finish.
 
 On  exit,  no  text  is  written to dialog's output.  An OK exit
 status is returned.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

@@ -28,7 +28,7 @@ using vi-style 'h' and 'l', or arrow-keys.   A  '0'  resets  the
 left/right  scrolling.   For  more convenience, vi-style forward
 and backward searching functions are also provided.
 
-On exit, no text is written to dialog's output.  Only an  \"EXIT\"
+On exit, no text is written to dialog's output.  Only an  'EXIT'
 button  is  provided  for  input,  but an ESC exit status may be
 returned.
 "

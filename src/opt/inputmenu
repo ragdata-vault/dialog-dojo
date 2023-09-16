@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --inputmenu text height width menu-height [ tag item ] ...
 
 An inputmenu box is very similar to an ordinary menu box.  There
@@ -29,7 +29,7 @@ are only a few differences between them:
     dialog's output.
 
     RENAMED <tag> <item>
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

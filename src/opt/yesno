@@ -27,11 +27,11 @@ button and a No button, in which the user can switch between  by
 pressing the TAB key.
 
 On  exit, no text is written to dialog's output.  In addition to
-the \"Yes\" and \"No\" exit codes  (see  DIAGNOSTICS)  an  ESC  exit
+the 'Yes' and 'No' exit codes  (see  DIAGNOSTICS)  an  ESC  exit
 status may be returned.
 
-The  codes used for \"Yes\" and \"No\" match those used for \"OK\" and
-\"Cancel\", internally no distinction is made.
+The  codes used for 'Yes' and 'No' match those used for 'OK' and
+'Cancel', internally no distinction is made.
 "
 manual
 # ==================================================================

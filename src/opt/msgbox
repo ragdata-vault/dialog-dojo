@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --msgbox text height width
 
 A message box is  very  similar  to  a  yes/no  box.   The  only
@@ -30,7 +30,7 @@ base of the widget.
 On exit, no text is written to dialog's output.   Only  an  'OK'
 button  is  provided  for  input,  but an ESC exit status may be
 returned.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

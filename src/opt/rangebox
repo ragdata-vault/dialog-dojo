@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --rangebox text height width min-value max-value default-value
 
 Allow the user to select from a range of values, e.g.,  using  a
@@ -32,7 +32,7 @@ Some keys are also recognized in all cursor positions:
 home/end :: set the value to its maximum or minimum
 
 pageup/pagedown :: increment the value so that the slider moves by one column
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

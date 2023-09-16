@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --menu text height width menu-height [ tag item ] ...
 
 As  its  name  suggests,  a menu box is a dialog box that can be
@@ -28,10 +28,10 @@ height entries displayed in the menu at one time, but  the  menu
 will be scrolled if there are more entries than that.
 
 On  exit  the  tag  of  the chosen menu entry will be printed on
-dialog's output.  If the \"--help-button\" option  is  given,  the
+dialog's output.  If the '--help-button' option  is  given,  the
 corresponding  help text will be printed if the user selects the
 help button.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

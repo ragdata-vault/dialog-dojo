@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --form text height width formheight [ label y x item y x flen ilen ] ...
 
 The form dialog displays a form consisting of labels and fields,
@@ -39,7 +39,7 @@ On exit, the contents of the form-fields are written to dialogs
 output,  each  field  separated  by a newline.  The text used to
 fill non-editable fields (flen  is  zero  or  negative)  is  not
 written out.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --radiolist text height width list-height  [ tag item status ] ...
 
 A  radiolist  box is similar to a menu box.  The only difference
@@ -21,7 +21,7 @@ setting its status to on.
 
 On  exit,  the  tag  of the selected item is written to dialog's
 output.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --mixedform text height width formheight [ label y x item y x flen ilen itype ] ...
 
 The mixedform dialog displays a form consisting  of  labels  and
@@ -23,7 +23,7 @@ the type denotes an attribute of the field:
 1    hidden, e.g., a password field.
 
 2    readonly, e.g., a label.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

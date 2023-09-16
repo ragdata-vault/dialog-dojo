@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --dselect filepath height width
 
 The  directory-selection  dialog displays a text-entry window in
@@ -37,7 +37,7 @@ value in the text-entry window and exit.
 
 On  exit,  the  contents of the text-entry window are written to
 dialog's output.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

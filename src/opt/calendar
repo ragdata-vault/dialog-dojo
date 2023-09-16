@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --calendar text height width day month year
 
 A calendar box  displays  month,  day  and  year  in  separately
@@ -26,7 +26,7 @@ the current date is used as an initial value.
 
 On  exit,  the  date is printed in the form day/month/year.  The
 format can be overridden using the --date-format option.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --programbox text height width
 --programbox height width
 
@@ -29,7 +29,7 @@ can continue its operation.
 If  three  parameters  are given, it displays the text under the
 title, delineated from the scrolling file's contents.   If  only
 two parameters are given, this text is omitted.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

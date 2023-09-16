@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --inputbox text height width [init]
 
 An input box is useful when  you  want  to  ask  questions  that
@@ -24,7 +24,7 @@ than  can  fit  in  the  dialog  box,  the  input  field will be
 scrolled.
 
 On exit, the input string will be printed on dialog's output.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

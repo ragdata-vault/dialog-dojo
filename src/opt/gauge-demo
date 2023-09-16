@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --gauge text height width [percent]
 
 A gauge box displays a meter along the bottom of the  box.   The
@@ -29,7 +29,7 @@ meter.  If not specified, it is zero.
 
 On exit, no text is written  to  dialogs  output.   The  widget
 accepts no input, so the exit status is always OK.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

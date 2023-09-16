@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --pause text height width seconds
 
 A pause box displays a meter along the bottom of the  box.   The
@@ -20,7 +20,7 @@ meter  indicates  how  many  seconds remain until the end of the
 pause.  The pause exits when timeout  is  reached  or  the  user
 presses the OK button (status OK) or the user presses the CANCEL
 button or Esc key.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --prgbox text command height width
 --prgbox command height width
 
@@ -28,7 +28,7 @@ its operation.
 If  four  parameters  are  given, it displays the text under the
 title, delineated from the scrolling file's contents.   If  only
 three parameters are given, this text is omitted.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --buildlist text height width list-height [ tag item status ] ...
 
 A  buildlist  dialog displays two lists, side-by-side.  The list
@@ -47,7 +47,7 @@ If the '--separate-output' option is not given, the strings will
 be quoted as needed to make it simple for  scripts  to  separate
 them.   By default, this uses double-quotes, as needed.  See the
 '--single-quoted' option, which modifies the quoting behavior.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars

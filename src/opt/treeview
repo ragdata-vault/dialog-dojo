@@ -16,8 +16,8 @@
 --treeview text height width list-height [ tag item status depth ] ...
 
 Display data organized as a tree.  Each group of data contains a
-tag,  the  text  to  display  for  the item, its status (\"on\" or
-\"off\") and the depth of the item in the tree.
+tag,  the  text  to  display  for  the item, its status ('on' or
+'off') and the depth of the item in the tree.
 
 Only one item can be selected (like the radiolist).  The tag  is
 not displayed.

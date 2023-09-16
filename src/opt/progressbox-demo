@@ -12,7 +12,7 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
-
+"
 --progressbox text height width
 --progressbox height width
 
@@ -22,12 +22,12 @@ a) rather than displaying the contents of a file,
    it displays the piped output of a command and
 
 b) it will exit when it reaches the end of the file
-   (there is no "OK" button).
+   (there is no 'OK' button).
 
 If  three  parameters  are given, it displays the text under the
 title, delineated from the scrolling file's contents.   If  only
 two parameters are given, this text is omitted.
-
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
