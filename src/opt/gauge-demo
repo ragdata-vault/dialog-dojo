@@ -1,6 +1,37 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# gauge-demo
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         gauge-demo
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--gauge text height width [percent]
+
+A gauge box displays a meter along the bottom of the  box.   The
+meter  indicates  the percentage.  New percentages are read from
+standard input, one integer per line.  The meter is  updated  to
+reflect  each  new  percentage.  If the standard input reads the
+string 'XXX', then the first  line  following  is  taken  as  an
+integer  percentage,  then  subsequent lines up to another 'XXX'
+are used for a new prompt.  The gauge exits when EOF is  reached
+on the standard input.
+
+The  percent  value  denotes the initial percentage shown in the
+meter.  If not specified, it is zero.
+
+On exit, no text is written  to  dialogs  output.   The  widget
+accepts no input, so the exit status is always OK.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 exec 3<&0

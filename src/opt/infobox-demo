@@ -1,9 +1,45 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# infobox-demo
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         infobox-demo
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--infobox text height width
+
+An  info box is basically a message box.  However, in this case,
+dialog will exit immediately after displaying the message to the
+user.   The screen is not cleared when dialog exits, so that the
+message will remain on the screen until the calling shell script
+clears  it  later.   This  is useful when you want to inform the
+user that some operations are carrying on that may require  some
+time to finish.
+
+On  exit,  no  text  is  written to dialog's output.  An OK exit
+status is returned.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 left=10
 unit="secs"
 
 while [[ "$left" != 0 ]]
+do
+	"$DIALOG" --sleep 1 \
+		--title "INFO BOX" "$@" \
+		--infobox "This is an information box.  It's different from a message box in that it will not pause to wait for
+		input after displaying its message.  The pause here is introduced by the sleep command within the dialog.
+
+		You have $left $unit to read this ..." 10 52
+		left=$((left - 1))
+done

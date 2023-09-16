@@ -1,6 +1,30 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# tailbox
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         tailbox
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--tailbox file height width
+
+Display text from a file in a dialog box,  as  in  a  "tail  -f"
+command.   Scroll  left/right  using  vi-style  'h'  and 'l', or
+arrow-keys.  A '0' resets the scrolling.
+
+On exit, no text is written to dialog's output.   Only  an  "OK"
+button  is  provided  for  input,  but an ESC exit status may be
+returned.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 

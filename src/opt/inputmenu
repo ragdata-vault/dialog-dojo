@@ -1,6 +1,37 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC2034
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# inputmenu
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         inputmenu
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--inputmenu text height width menu-height [ tag item ] ...
+
+An inputmenu box is very similar to an ordinary menu box.  There
+are only a few differences between them:
+
+1.  The   entries   are  not  automatically  centered  but  left
+    adjusted.
+
+2.  An extra button (called Rename) is  implied  to  rename  the
+    current item when it is pressed.
+
+3.  It  is  possible to rename the current entry by pressing the
+    Rename button.  Then dialog  will  write  the  following  on
+    dialog's output.
+
+    RENAMED <tag> <item>
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 RESULT=$($DIALOG --ok-label "${OK_LABEL:-OK}" \

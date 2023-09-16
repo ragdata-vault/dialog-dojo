@@ -1,9 +1,48 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC2034
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# dselect
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         dselect
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--dselect filepath height width
+
+The  directory-selection  dialog displays a text-entry window in
+which you can type a directory, and above that  a  windows  with
+directory names.
+
+Here  filepath  can  be  a  filepath in which case the directory
+window will display the contents of the path and the  text-entry
+window will contain the preselected directory.
+
+Use  tab  or arrow keys to move between the windows.  Within the
+directory window, use the  up/down  arrow  keys  to  scroll  the
+current  selection.   Use  the  space-bar  to  copy  the current
+selection into the text-entry window.
+
+Typing any printable characters switches focus to the text-entry
+window,  entering  that  character  as  well  as  scrolling  the
+directory window to the closest match.
+
+Use a carriage return or the 'OK' button to accept  the  current
+value in the text-entry window and exit.
+
+On  exit,  the  contents of the text-entry window are written to
+dialog's output.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
-RESULT=$($DIALOG --ok-label "${OK_LABEL:-OK}" \
+RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \
 	--cancel-label "${CANCEL_LABEL:-Cancel}" \
 	--backtitle "${DIALOG_BACKTITLE}" \
 	--title "${DIALOG_TITLE}" --clear "$@" \

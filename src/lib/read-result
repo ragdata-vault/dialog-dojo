@@ -6,6 +6,10 @@ case "${retval:-0}" in
 		RESULT="$RESULT";;
 	"$DIALOG_CANCEL")
 		exit "$DIALOG_CANCEL";;
+	"$DIALOG_HELP")
+		;;
+	"$DIALOG_ERROR")
+		;;
 	"$DIALOG_ESC")
 		if [[ -n "$RESULT" ]]; then
 			RESULT="$RESULT"

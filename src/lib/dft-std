@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+DIALOG_OPTS="$DIALOG_OPTS --ok-label ${OK_LABEL:-OK} --cancel-label ${CANCEL_LABEL:-Cancel} --backtitle ${DIALOG_BACKTITLE} --title ${DIALOG_TITLE} --clear" "$@"

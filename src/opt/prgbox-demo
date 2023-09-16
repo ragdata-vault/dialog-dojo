@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# prgbox-demo
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         prgbox-demo
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
+
+--prgbox text command height width
+--prgbox command height width
+
+A prgbox is very similar to a programbox.
+
+This dialog box is used to display the output of a command  that
+is specified as an argument to prgbox.
+
+After the command completes, the user can press the ENTER key so
+that dialog will exit and the calling shell script can  continue
+its operation.
+
+If  four  parameters  are  given, it displays the text under the
+title, delineated from the scrolling file's contents.   If  only
+three parameters are given, this text is omitted.
+
+manual
+# ==================================================================
+. /usr/local/lib/dd/setup-vars
+
+RESULT=$("$DIALOG" --title "${DIALOG_TITLE}" "$@" --prgbox "/usr/local/lib/dd/shortlist" 20 70)
+
+retval=$?
+
+. /usr/local/lib/dd/read-result

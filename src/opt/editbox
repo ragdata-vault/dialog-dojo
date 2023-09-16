@@ -1,14 +1,40 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC2034
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# dselect
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         dselect
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--editbox filepath height width
+
+The edit-box dialog displays a copy of the file.  You  may  edit
+it using the backspace, delete and cursor keys to correct typing
+errors.   It  also  recognizes  pageup/pagedown.    Unlike   the
+--inputbox,  you  must  tab  to  the 'OK' or 'Cancel' buttons to
+close the dialog.  Pressing the 'Enter' key within the box  will
+split the corresponding line.
+
+On exit, the contents of the edit window are written to dialog's
+output.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 . /usr/local/lib/dd/setup-edit
 
-RESULT=$($DIALOG --ok-label "${OK_LABEL:-OK}" \
+$DIALOG --ok-label "${OK_LABEL:-OK}" \
 	--cancel-label "${CANCEL_LABEL:-Cancel}" \
 	--backtitle "${DIALOG_BACKTITLE}" \
 	--title "${DIALOG_TITLE}" --clear "$@" \
-	--editbox "${DIALOG_INPUT:-$input}" "${HEIGHT:-15}" "${WIDTH:-50}" 2>"$output")
+	--editbox "${DIALOG_INPUT:-$input}" "${HEIGHT:-15}" "${WIDTH:-50}" 2>"$output"
 
 retval=$?
 

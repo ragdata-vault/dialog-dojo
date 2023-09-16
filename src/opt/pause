@@ -1,6 +1,28 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC2034
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# pause
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         pause
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--pause text height width seconds
+
+A pause box displays a meter along the bottom of the  box.   The
+meter  indicates  how  many  seconds remain until the end of the
+pause.  The pause exits when timeout  is  reached  or  the  user
+presses the OK button (status OK) or the user presses the CANCEL
+button or Esc key.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \

@@ -1,12 +1,59 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC2034
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# buildlist
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         buildlist
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--buildlist text height width list-height [ tag item status ] ...
+
+A  buildlist  dialog displays two lists, side-by-side.  The list
+on the left shows unselected items.  The list on the right shows
+selected  items.  As items are selected or unselected, they move
+between the lists.
+
+Use a carriage return or the 'OK' button to accept  the  current
+value  in the selected-window and exit.  The results are written
+using the order displayed in the selected-window.
+
+The initial on/off state of each entry is specified by status.
+
+The dialog behaves like  a  menu,  using  the  --visit-items  to
+control  whether  the  cursor  is  allowed  to  visit  the lists
+directly.
+
+o   If --visit-items is not given, tab-traversal uses two states
+    (OK/Cancel).
+
+o   If  --visit-items  is  given, tab-traversal uses four states
+    (Left/Right/OK/Cancel).
+
+Whether or not --visit-items is given, it is  possible  to  move
+the highlight between the two lists using the default '^' (left-
+column) and '$' (right-column) keys.
+
+On exit, a list of the tag strings of  those  entries  that  are
+turned on will be printed in output.
+
+If the '--separate-output' option is not given, the strings will
+be quoted as needed to make it simple for  scripts  to  separate
+them.   By default, this uses double-quotes, as needed.  See the
+'--single-quoted' option, which modifies the quoting behavior.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
+. /usr/local/lib/dd/dft-std
 
-RESULT=$($DIALOG --ok-label "${OK_LABEL:-OK}" \
-	--cancel-label "${CANCEL_LABEL:-Cancel}" \
-	--backtitle "${DIALOG_BACKTITLE}" \
-	--title "${DIALOG_TITLE}" --clear "$@" \
+RESULT=$("$DIALOG" "$DIALOG_OPTS" \
 	--separator "${DIALOG_SEPARATOR:-|}" \
 	--buildlist "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
 	"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)

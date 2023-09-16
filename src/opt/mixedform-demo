@@ -1,6 +1,31 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# mixedform-demo
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         mixedform-demo
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--mixedform text height width formheight [ label y x item y x flen ilen itype ] ...
+
+The mixedform dialog displays a form consisting  of  labels  and
+fields,  much  like  the  --form dialog.  It differs by adding a
+field-type parameter to each field's description.  Each  bit  in
+the type denotes an attribute of the field:
+
+1    hidden, e.g., a password field.
+
+2    readonly, e.g., a label.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 retval=0

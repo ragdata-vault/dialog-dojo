@@ -1,6 +1,34 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC2034
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# calendar
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         calendar
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--calendar text height width day month year
+
+A calendar box  displays  month,  day  and  year  in  separately
+adjustable  windows.   If  the values for day, month or year are
+missing or negative, the current dates corresponding values are
+used.   You  can  increment  or decrement any of those using the
+left-, up-, right-, and down-arrows.  Use vi-style h, j, k and l
+for  moving  around  the  array  of days in a month.  Use tab or
+backtab to move between windows.  If the year is given as  zero,
+the current date is used as an initial value.
+
+On  exit,  the  date is printed in the form day/month/year.  The
+format can be overridden using the --date-format option.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 DD="$(date +%d)"
@@ -8,7 +36,7 @@ MM="$(date +%m)"
 YY="$(date +%y)"
 YYYY="$(date +%Y)"
 
-RESULT=$($DIALOG --stdout \
+RESULT=$("$DIALOG" --stdout \
 	--ok-label "${OK_LABEL:-OK}" \
 	--cancel-label "${CANCEL_LABEL:-Cancel}" \
 	--backtitle "${DIALOG_BACKTITLE}" \

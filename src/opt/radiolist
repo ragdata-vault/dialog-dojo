@@ -1,6 +1,29 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC2034
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# radiolist
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         radiolist
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--radiolist text height width list-height  [ tag item status ] ...
+
+A  radiolist  box is similar to a menu box.  The only difference
+is that you can indicate which entry is currently  selected,  by
+setting its status to on.
+
+On  exit,  the  tag  of the selected item is written to dialog's
+output.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 RESULT=$($DIALOG --ok-label "${OK_LABEL:-OK}" \

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091,SC2034,SC2188
 # ==================================================================
-# form-demo
+# form
 # ==================================================================
 # Dialog Dojo Dialog Box
 #
-# File:         form-demo
+# File:         form
 # Author:       Ragdata
 # Date:         15/09/2023
 # License:      MIT License
@@ -44,51 +44,11 @@ manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
 
+
+
 retval=0
 
-while [[ "$retval" -ne 1 ]] && [[ "$retval" -ne 254 ]]
+while [[ $retval -ne 1 ]] && [[ $retval -ne 254 ]]
 do
-	RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \
-		--cancel-label "${CANCEL_LABEL:-Cancel}" \
-		--help-label "${HELP_LABEL:-Help}" \
-		--backtitle "${DIALOG_BACKTITLE}" \
-		--title "${DIALOG_TITLE}" --clear "$@" \
-		--form "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
-		"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)
-	retval=$?
-	case "$retval" in
-		"$DIALOG_CANCEL")
-			"$DIALOG" --clear \
-				--yesno "Really quit?" 10 30
-			case $? in
-				"$DIALOG_OK")
-					break
-					;;
-				"$DIALOG_CANCEL")
-					retval=99
-					;;
-			esac
-			;;
-		"$DIALOG_OK")
-			"$DIALOG" --clear \
-				--title "FORM DATA" --no-collapse --cr-wrap \
-				--msgbox "$RESULT" 10 40
-			;;
-		"$DIALOG_HELP")
-			echo "HELP"
-			exit
-			;;
-		"$DIALOG_ERROR")
-			echo "ERROR"
-			exit
-			;;
-		"$DIALOG_ESC")
-			echo "ESC"
-			exit
-			;;
-		*)
-			echo "Code returned was '$retval'"
-			exit
-			;;
-	esac
+
 done

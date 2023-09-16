@@ -1,6 +1,37 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# mixedgauge-demo
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         mixedgauge-demo
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
 
+--mixedgauge text height width percent [ tag1 item1 ] ...
+
+A  mixedgauge  box displays a meter along the bottom of the box.
+The meter indicates the percentage.
+
+It also displays a list of the tag- and item-values at  the  top
+of the box.  See dialog(3) for the tag values.
+
+The  text is shown as a caption between the list and meter.  The
+percent value denotes the initial percentage shown in the meter.
+
+No provision is made for reading data from the standard input as
+--gauge does.
+
+On  exit,  no  text  is  written to dialog's output.  The widget
+accepts no input, so the exit status is always OK.
+
+manual
+# ==================================================================
 . /usr/local/lib/dd/setup-vars
 
 background="An example of --mixedgauge usage"
