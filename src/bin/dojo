@@ -197,7 +197,10 @@ dojo::theme()
 
 	while [[ "$retval" -ne 1 ]] && [[ "$retval" -ne 254 ]]
 	do
-		RESULT=$(dialog "${DIALOG_OPTS}" \
+		RESULT=$(dialog --ok-label "${OK_LABEL:-OK}" \
+			--cancel-label "${CANCEL_LABEL:-Cancel}" \
+			--backtitle "${DIALOG_BACKTITLE}" \
+			--title "${DIALOG_TITLE}" \
 			--menu "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${MENU_HEIGHT:-5}" \
 			"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)
 
