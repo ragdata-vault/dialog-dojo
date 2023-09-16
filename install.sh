@@ -229,25 +229,25 @@ install::install()
 	do
 		case "$dir" in
 			bin)
-				for file in "$REPO"/src/bin/*
+				while IFS= read -r file
 				do
 					install -v -b -C -D -t /usr/local/bin "$file"
-				done;;
+				done < <(find "$REPO"/src/bin -type f);;
 			cfg)
-				for file in "$REPO"/src/cfg/*
+				while IFS= read -r file
 				do
 					install -v -b -C -D -t /opt/dd/cfg "$file"
-				done;;
+				done < <(find "$REPO"/src/cfg -type f);;
 			lib)
-				for file in "$REPO"/src/lib/*
+				while IFS= read -r file
 				do
 					install -v -b -C -D -t /usr/local/lib/dd "$file"
-				done;;
+				done < <(find "$REPO"/src/lib -type f);;
 			opt)
-				for file in "$REPO"/src/opt/*
+				while IFS= read -r file
 				do
 					install -v -b -C -D -t /opt/dd "$file"
-				done;;
+				done < <(find "$REPO"/src/opt -type f);;
 		esac
 	done
 
