@@ -193,7 +193,7 @@ dojo::theme()
 		"6" "Whiptail"
 	)
 
-	. /usr/local/lib/dd/dft-std
+	. /usr/local/lib/dd/setup-vars
 
 	while [[ "$retval" -ne 1 ]] && [[ "$retval" -ne 254 ]]
 	do
