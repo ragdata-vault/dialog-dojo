@@ -251,8 +251,6 @@ install::install()
 		esac
 	done
 
-	clear
-
 	install::returnQuit
 }
 # ------------------------------------------------------------------
@@ -260,20 +258,21 @@ install::install()
 # ------------------------------------------------------------------
 install::uninstall()
 {
-	local
-}
-# ------------------------------------------------------------------
-# install::upgrade
-# ------------------------------------------------------------------
-install::upgrade()
-{
-	local
+	rm -f /usr/local/bin/dojo*
+	rm -f /usr/local/lib/dd/*
+	rmdir /usr/local/lib/dd
+	rm -rf /opt/dd/*
+	rmdir /opt/dd
+
+	install::returnQuit
 }
 # ------------------------------------------------------------------
 # install::returnQuit
 # ------------------------------------------------------------------
 install::returnQuit()
 {
+	clear
+
     echo
     echoSuccess "DONE!"
     echoSuccess "Do you want to (R)eturn to the Menu, or (Q)uit? (R/${GOLD}Q${RESET}) " -n
@@ -353,7 +352,7 @@ install::menu()
 		case "$option" in
 			"Install") install::install;;
 			"Uninstall") install::uninstall;;
-			"Update") install::update;;
+			"Update") install::install;;
 			"About") install::version verbose;;
 			"Quit") install::quit;;
 		esac

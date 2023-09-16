@@ -34,11 +34,9 @@ returned.
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
-. /usr/local/lib/dd/dft-std
 
-RESULT=$("$DIALOG" "${DIALOG_OPTS}" \
+RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \
+	--cancel-label "${CANCEL_LABEL:-Cancel}" \
+	--backtitle "${DIALOG_BACKTITLE}" \
+	--title "${DIALOG_TITLE}" --clear "$@" \
 	--msgbox "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" 3>&1 1>&2 2>&3)
-
-retval=$?
-
-. /usr/local/lib/dd/read-result

@@ -174,11 +174,39 @@ scriptPath() { printf '%s' "$(realpath "${BASH_SOURCE[0]}")"; }
 # ------------------------------------------------------------------
 scriptDir() { printf '%s' "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"; }
 # ------------------------------------------------------------------
+# dojo::errHandler
+# ------------------------------------------------------------------
+dojo::errHandler()
+{
+	local -n lineNo="${1:-LINENO}"
+	local -n bashLN="${2:-BASH_LINENO}"
+	local cmd="${3:-BASH_COMMAND}"
+	local code="${4:-0}"
+
+	if [[ "$code" == 1 ]] || [[ "$code" == 255 ]]; then
+		dialog --clear --yesno "Are you sure you want to quit?" 5 50
+		case $? in
+			0)
+				clear
+				echo "RETURNED 0"
+				;;
+			1)
+				clear
+				echo "RETURNED 1"
+				;;
+			255)
+				clear
+				echo "RETURNED 255"
+				;;
+		esac
+	fi
+}
+# ------------------------------------------------------------------
 # dojo::theme
 # ------------------------------------------------------------------
 dojo::theme()
 {
-	local retval=0
+	local user retval=0
 	local RESULT theme canval
 	local DIALOG_BACKTITLE="DIALOG DOJO"
 	local DIALOG_TITLE="THEME INSTALLER"
@@ -193,63 +221,41 @@ dojo::theme()
 		"6" "Whiptail"
 	)
 
-	. /usr/local/lib/dd/setup-vars
+	[ "$SUDO_USER" ] && user="$SUDO_USER" || user="$(whoami)"
 
-	while [[ "$retval" != 1 ]]
-	do
-		exec 3>&1
-		RESULT=$(dialog --ok-label "${OK_LABEL:-OK}" \
-			--cancel-label "${CANCEL_LABEL:-Cancel}" \
-			--backtitle "${DIALOG_BACKTITLE}" \
-			--title "${DIALOG_TITLE}" \
-			--menu "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${MENU_HEIGHT:-5}" \
-			"${DIALOG_OPTIONS[@]}" 2>&1 1>&3)
+	trap 'clear' ERR
 
-		retval=$?
+	RESULT=$(dialog --ok-label "${OK_LABEL:-OK}" \
+		--cancel-label "${CANCEL_LABEL:-Cancel}" \
+		--backtitle "${DIALOG_BACKTITLE}" \
+		--title "${DIALOG_TITLE}" \
+		--menu "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${MENU_HEIGHT:-5}" \
+		"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)
 
-		exec 3>&-
-
-		case $retval in
-			"$DIALOG_OK")
-				case $RESULT in
-					1) theme=".debianrc";;
-					2) theme=".redeyedrc";;
-					3) theme=".slackwarerc";;
-					4) theme=".sourcemagerc";;
-					5) theme=".suserc";;
-					6) theme=".whiptailrc";;
-				esac
-				;;
-			"$DIALOG_CANCEL")
-				dialog --clear --yesno "Really Quit?" 10 30
-				canval=$?
-				case $canval in
-					"$DIALOG_OK")
-						return 0
-						;;
-					"$DIALOG_CANCEL")
-						retval=99
-						;;
-					"$DIALOG_ESC")
-						return 1
-						;;
-				esac
-				;;
-			"$DIALOG_ESC")
-				return 1
-				;;
-		esac
-	done
+	case $RESULT in
+		1) theme=".debianrc";;
+		2) theme=".redeyedrc";;
+		3) theme=".slackwarerc";;
+		4) theme=".sourcemagerc";;
+		5) theme=".suserc";;
+		6) theme=".whiptailrc";;
+	esac
 
 	clear
 
 	if [[ -f /opt/dd/cfg/"$theme" ]]; then
-		[[ -f "$HOME"/.dialogrc ]] && rm -f "$HOME"/.dialogrc
-		sudo cp /opt/dd/cfg/"$theme" "$HOME"/.dialogrc
-		echoSuccess "DONE!"
+		if [[ "$user" != "root" ]]; then
+			[[ -f /home/"$user"/.dialogrc ]] && rm -f /home/"$user"/.dialogrc
+			sudo cp /opt/dd/cfg/"$theme" /home/"$user"/.dialogrc
+		else
+			[[ -f /root/.dialogrc ]] && rm -f /root/.dialogrc
+			cp /opt/dd/cfg/"$theme" /root/.dialogrc
+		fi
 	else
 		errorReturn "Theme '$theme' Not Found!"
 	fi
+
+	echoSuccess "DONE!"
 }
 # ------------------------------------------------------------------
 # dojo::usage
@@ -269,7 +275,7 @@ dojo::usage()
 	echo "OPTIONS:"
 	echo "    -h, --help            - Show this information"
 	echo "    -v, --version         - Show short version information"
-	echo "    -v, --version verbose - Show verbose version information"
+	echo "    -v, --version=verbose - Show verbose version information"
 	echo
 	echoGold "===================================================================="
 	echo
@@ -326,13 +332,8 @@ do
 			exit 0
 			;;
 		-v|--version)
-			if [[ -n "${2}" ]]; then
-				dojo::version "${2}"
-				shift 2
-			else
-				dojo::version
-				shift
-			fi
+			shift
+			dojo::version "$@"
 			exit 0
 			;;
 		--)
