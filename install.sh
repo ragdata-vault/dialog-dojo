@@ -214,7 +214,7 @@ scriptDir() { printf '%s' "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"; }
 # ------------------------------------------------------------------
 install::install()
 {
-	local REPO
+	local REPO dir file
 	local -a dirs=("bin" "cfg" "lib" "opt")
 
 	if [[ -f ./README.md ]]; then

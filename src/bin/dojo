@@ -26,9 +26,166 @@ if [[ "${1,,}" == "debug" ]]; then shift; DOJO_DEBUG=1; set -- "${@}"; set -axeE
 declare -gx DOJO_VERSION="0.1.0"
 declare -gx DOJO_BUILD="1001"
 declare -gx DOJO_BUILD_DATE="20230818:0426"
+#
+# ANSI VARIABLES
+#
+declare -gx ANSI_ESC=$'\033'
+declare -gx ANSI_CSI="${ANSI_ESC}["
+#
+# COLOR VARIABLES
+#
+declare -gx RED="$(printf '%s31m' "$ANSI_CSI")"
+declare -gx BLUE="$(printf '%s94m' "$ANSI_CSI")"
+declare -gx GREEN="$(printf '%s32m' "$ANSI_CSI")"
+declare -gx GOLD="$(printf '%s33m' "$ANSI_CSI")"
+declare -gx WHITE="$(printf '%s97m' "$ANSI_CSI")"
+declare -gx RESET="$(printf '%s0m' "$ANSI_CSI")"
+#
+# SYMBOLS
+#
+[[ -z "${SYMBOL_ERROR}" ]] && declare -gx SYMBOL_ERROR="🚫"
+[[ -z "${SYMBOL_WARNING}" ]] && declare -gx SYMBOL_WARNING="⚠️"
+[[ -z "${SYMBOL_INFO}" ]] && declare -gx SYMBOL_INFO="ℹ️"
+[[ -z "${SYMBOL_SUCCESS}" ]] && declare -gx SYMBOL_SUCCESS="✅"
+#
+# MISC
+#
+declare -gx isOPT='^(-([A-Za-z]+)[\s]?([A-Za-z0-9_\.]*))$|^(--(([A-Za-z0-9_\.]+)=?([A-Za-z0-9_\.]*)))$'
 # ==================================================================
 # FUNCTIONS
 # ==================================================================
+# ------------------------------------------------------------------
+# echoAlias
+# ------------------------------------------------------------------
+# @description Master alias function for `echo` command
+#
+# @arg  $1			[string]        String to be rendered
+# @arg  -c="$VAR"   [option]        Color alias as defined above 				(required)
+# @arg  -p='string' [option]        String to prefix to $1 						(optional)
+# @arg  -s='string' [option]        String to suffix to $1 						(optional)
+# @arg  -e          [option]        Enable escape codes 						(optional)
+# @arg  -n          [option]        Disable newline at end of rendered string 	(optional)
+#
+# @exitcode     0   Success
+# @exitcode     1   Failure
+# @exitcode     2   ERROR - Requires Argument
+# @exitcode     3   ERROR - Invalid Argument
+# ------------------------------------------------------------------
+dojo::echoAlias()
+{
+    local msg="${1:-}"
+    local COLOR=""
+    local OUTPUT=""
+    local PREFIX=""
+    local SUFFIX=""
+    local _0=""
+    local STREAM=1
+    local -a OUTARGS
+
+    shift
+
+    [[ -z "$msg" ]] && { echo "${RED}${SYMBOL_ERROR} ERROR :: dojo::echoAlias :: Requires Argument!${RESET}"; return 2; }
+
+    options=$(getopt -l "color:,prefix:,suffix:,escape,noline" -o "c:p:s:en" -a -- "$@")
+
+    eval set --"$options"
+
+    while true
+    do
+        case "$1" in
+            -c|--color)
+                COLOR="$2"
+                shift 2
+                ;;
+            -p|--prefix)
+                PREFIX="$2"
+                shift 2
+                ;;
+            -s|--suffix)
+                SUFFIX="$2"
+                shift 2
+                ;;
+            -e|--escape)
+                OUTARGS+=("-e")
+                shift
+                ;;
+            -n|--noline)
+                OUTARGS+=("-n")
+                shift
+                ;;
+            --)
+                shift
+                break
+                ;;
+            *)
+                echo "${RED}ERROR :: echoAlias ::Invalid Argument '$1'!${RESET}"
+                return 1
+                ;;
+        esac
+    done
+
+    [[ -n "$COLOR" ]] && _0="${RESET}" || _0=""
+
+    OUTPUT="${COLOR}${PREFIX}${msg}${SUFFIX}${_0}"
+
+    [[ "$STREAM" -eq 2 ]] && echo "${OUTARGS[@]}" "${OUTPUT}" >&2 || echo "${OUTARGS[@]}" "${OUTPUT}"
+
+#    return 0
+}
+#
+# COLOUR ALIASES
+#
+echoRed() { dojo::echoAlias "$1" -c "${RED}" "${@:2}"; }
+echoBlue() { dojo::echoAlias "$1" -c "${BLUE}" "${@:2}"; }
+echoGreen() { dojo::echoAlias "$1" -c "${GREEN}" "${@:2}"; }
+echoGold() { dojo::echoAlias "$1" -c "${GOLD}" "${@:2}"; }
+echoWhite() { dojo::echoAlias "$1" -c "${WHITE}" "${@:2}"; }
+#
+# MESSAGE ALIASES
+#
+echoError() { dojo::echoAlias "$SYMBOL_ERROR $1" -e -c "${RED}" "${@:2}"; }
+echoWarning() { dojo::echoAlias "$SYMBOL_WARNING $1" -e -c "${GOLD}" "${@:2}"; }
+echoInfo() { dojo::echoAlias "$SYMBOL_INFO $1" -c "${BLUE}" "${@:2}"; }
+echoSuccess() { dojo::echoAlias "$SYMBOL_SUCCESS $1" -c "${GREEN}" "${@:2}"; }
+errorReturn() { echoError "$1"; return "${2:-1}"; }
+#
+# EXIT ALIASES
+#
+exitReturn() { local r="${1:-0}"; [[ "${BASH_SOURCE[0]}" != "${0}" ]] && return "$r" || exit "$r"; }
+errorExitReturn() { echoError "$1"; exitReturn "${2:-1}"; }
+# ------------------------------------------------------------------
+# scriptPath
+# ------------------------------------------------------------------
+# @description Determine the calling script's current path
+#
+# @noargs
+#
+# @stdout The calling script's current path
+# ------------------------------------------------------------------
+scriptPath() { printf '%s' "$(realpath "${BASH_SOURCE[0]}")"; }
+# ------------------------------------------------------------------
+# scriptDir
+# ------------------------------------------------------------------
+# @description Determine the calling script's current directory
+#
+# @noargs
+#
+# @stdout The calling script's current directory
+# ------------------------------------------------------------------
+scriptDir() { printf '%s' "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"; }
+# ------------------------------------------------------------------
+# dojo::theme
+# ------------------------------------------------------------------
+dojo::theme()
+{
+	local theme="${1:-}"
+
+	[[ -z "$theme" ]] && errorReturn "Missing Argument!"
+
+	[[ "${theme:0:1}" != "." ]] && theme=".$theme"
+
+
+}
 # ------------------------------------------------------------------
 # dojo::version
 # ------------------------------------------------------------------
@@ -57,6 +214,17 @@ dojo::version()
 # ==================================================================
 # MAIN
 # ==================================================================
+if [[ -n "$1" ]] && [[ ! "$1" =~ $isOPT ]]; then
+	case "${1,,}" in
+		theme)
+			shift
+			dojo::theme "$@"
+			exit 0
+			;;
+		*)  echo "ERROR :: Invalid Option";;
+	esac
+fi
+
 options=$(getopt -l "version::" -o "v::" -a -- "$@")
 
 eval set --"$options"
