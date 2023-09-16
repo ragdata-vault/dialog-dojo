@@ -178,13 +178,94 @@ scriptDir() { printf '%s' "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"; }
 # ------------------------------------------------------------------
 dojo::theme()
 {
-	local theme="${1:-}"
+	local retval=0
+	local RESULT theme
+	local DIALOG_BACKTITLE="DIALOG DOJO"
+	local DIALOG_TITLE="THEME INSTALLER"
+	local DIALOG_TEXT="Select a theme:"
+	local MENU_HEIGHT=7
+	local -a DIALOG_OPTIONS=(
+		"1" "Debian"
+		"2" "Redeyed"
+		"3" "Slackware"
+		"4" "Sourcemage"
+		"5" "SUSE"
+		"6" "Whiptail"
+	)
 
-	[[ -z "$theme" ]] && errorReturn "Missing Argument!"
+	. /usr/local/lib/dd/dft-std
 
-	[[ "${theme:0:1}" != "." ]] && theme=".$theme"
+	while [[ "$retval" -ne 1 ]] && [[ "$retval" -ne 254 ]]
+	do
+		RESULT=$(dialog "${DIALOG_OPTS}" \
+			--menu "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${MENU_HEIGHT:-5}" \
+			"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)
 
+		retval=$?
 
+		case "$retval" in
+			"$DIALOG_OK")
+				case "$RESULT" in
+					1) theme=".debianrc";;
+					2) theme=".redeyedrc";;
+					3) theme=".slackwarerc";;
+					4) theme=".sourcemagerc";;
+					5) theme=".suserc";;
+					6) theme=".whiptailrc";;
+				esac
+				;;
+			"$DIALOG_CANCEL")
+				dialog --clear --yesno "Really Quit?" 10 30
+				case "$?" in
+					"$DIALOG_OK")
+						return 0
+						;;
+					"$DIALOG_CANCEL")
+						retval=99
+						;;
+					"$DIALOG_ESC")
+						return 1
+						;;
+				esac
+				;;
+			"$DIALOG_ESC")
+				return 1
+				;;
+		esac
+	done
+
+	clear
+
+	if [[ -f /opt/dd/cfg/"$theme" ]]; then
+		[[ -f "$HOME"/.dialogrc ]] && rm -f "$HOME"/.dialogrc
+		sudo cp /opt/dd/cfg/"$theme" "$HOME"/.dialogrc
+		echoSuccess "DONE!"
+	else
+		errorReturn "Theme '$theme' Not Found!"
+	fi
+}
+# ------------------------------------------------------------------
+# dojo::usage
+# ------------------------------------------------------------------
+dojo::usage()
+{
+	echo
+	echoGold "===================================================================="
+	echoWhite "USAGE: dojo <command> <option>"
+	echoGold "===================================================================="
+	echo
+	echo "COMMANDS:"
+	echo "    theme                 - Set dialog theme for current user"
+	echo
+	echoGold "===================================================================="
+	echo
+	echo "OPTIONS:"
+	echo "    -h, --help            - Show this information"
+	echo "    -v, --version         - Show short version information"
+	echo "    -v, --version verbose - Show verbose version information"
+	echo
+	echoGold "===================================================================="
+	echo
 }
 # ------------------------------------------------------------------
 # dojo::version
@@ -225,13 +306,18 @@ if [[ -n "$1" ]] && [[ ! "$1" =~ $isOPT ]]; then
 	esac
 fi
 
-options=$(getopt -l "version::" -o "v::" -a -- "$@")
+options=$(getopt -l "help,version::" -o "hv::" -a -- "$@")
 
 eval set --"$options"
 
 while true
 do
 	case "$1" in
+		-h|--help)
+			shift
+			dojo::usage
+			exit 0
+			;;
 		-v|--version)
 			if [[ -n "${2}" ]]; then
 				dojo::version "${2}"
