@@ -195,7 +195,7 @@ dojo::theme()
 
 	. /usr/local/lib/dd/setup-vars
 
-	while [[ "$retval" -ne 1 ]] && [[ "$retval" -ne 254 ]]
+	while [[ "$retval" != 1 ]]
 	do
 		exec 3>&1
 		RESULT=$(dialog --ok-label "${OK_LABEL:-OK}" \
