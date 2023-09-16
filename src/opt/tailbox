@@ -26,8 +26,10 @@ returned.
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
+. /usr/local/lib/dd/dft-std
 
-
+RESULT=$("$DIALOG" "${DIALOG_OPTS}" \
+	--tailbox "${DIALOG_FILE}" "${HEIGHT:-15}" "${WIDTH:-50}" 3>&1 1>&2 2>&3)
 
 retval=$?
 

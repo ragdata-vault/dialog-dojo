@@ -12,14 +12,34 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
+"
+--yesno text height width
 
+A yes/no dialog box of size height rows by width columns will be
+displayed.  The string specified by text is displayed inside the
+dialog box.  If this string is too long to fit in one  line,  it
+will be automatically divided into multiple lines at appropriate
+places.  The text string can also contain the sub-string 'n' or
+newline  characters  '\n'  to  control line breaking explicitly.
+This dialog box is useful for asking questions that require  the
+user  to  answer  either  yes  or  no.  The dialog box has a Yes
+button and a No button, in which the user can switch between  by
+pressing the TAB key.
 
+On  exit, no text is written to dialog's output.  In addition to
+the \"Yes\" and \"No\" exit codes  (see  DIAGNOSTICS)  an  ESC  exit
+status may be returned.
 
+The  codes used for \"Yes\" and \"No\" match those used for \"OK\" and
+\"Cancel\", internally no distinction is made.
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
+. /usr/local/lib/dd/dft-std
 
-
+RESULT=$("$DIALOG" "${DIALOG_OPTS}" \
+	--yesno "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" 3>&1 1>&2 2>&3)
 
 retval=$?
 

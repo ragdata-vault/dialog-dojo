@@ -45,12 +45,9 @@ dialog's output.
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
+. /usr/local/lib/dd/dft-std
 
-RESULT=$("$DIALOG" --stdout \
-	--ok-label "${OK_LABEL:-OK}" \
-	--cancel-label "${CANCEL_LABEL:-Cancel}" \
-	--backtitle "${DIALOG_BACKTITLE}" \
-	--title "${DIALOG_TITLE}" --clear "$@" \
+RESULT=$("$DIALOG" "${DIALOG_OPTS}" \
 	--fselect "${FILEPATH}" "${HEIGHT:-15}" "${WIDTH:-50}" 3>&1 1>&2 2>&3)
 
 retval=$?

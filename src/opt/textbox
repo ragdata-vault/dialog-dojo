@@ -12,14 +12,33 @@
 # Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
 # ==================================================================
 <<manual
+"
+--textbox file height width
 
+A  text  box  lets  you display the contents of a text file in a
+dialog box.  It is like a simple text file viewer.  The user can
+move  through  the  file by using the cursor, page-up, page-down
+and HOME/END keys available on most keyboards.  If the lines are
+too  long to be displayed in the box, the LEFT/RIGHT keys can be
+used to scroll the text region horizontally.  You may  also  use
+vi-style  keys h, j, k, and l in place of the cursor keys, and B
+or N in place of the page-up and page-down keys.  Scroll up/down
+using  vi-style  'k'  and 'j', or arrow-keys.  Scroll left/right
+using vi-style 'h' and 'l', or arrow-keys.   A  '0'  resets  the
+left/right  scrolling.   For  more convenience, vi-style forward
+and backward searching functions are also provided.
 
-
+On exit, no text is written to dialog's output.  Only an  \"EXIT\"
+button  is  provided  for  input,  but an ESC exit status may be
+returned.
+"
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
+. /usr/local/lib/dd/dft-std
 
-
+RESULT=$("$DIALOG" "${DIALOG_OPTS}" \
+	--textbox "${DIALOG_FILE}" "${HEIGHT:-15}" "${WIDTH:-50}" 3>&1 1>&2 2>&3)
 
 retval=$?
 

@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2154,SC2034
+
+case "${retval:-0}" in
+	"$DIALOG_OK")
+		"$DIALOG" --clear \
+			--title "CONFIRM FORM DATA" --no-collapse --cr-wrap \
+			--yesno "$RESULT" 20 40
+			case $? in
+				"$DIALOG_OK")
+					break
+					;;
+				"$DIALOG_CANCEL")
+					retval=99
+					;;
+				"$DIALOG_ESC")
+					exit 1
+					;;
+			esac
+		;;
+	"$DIALOG_CANCEL")
+		"$DIALOG" --clear \
+			--yesno "Really Quit?" 10 30
+			case $? in
+				"$DIALOG_OK")
+					break
+					;;
+				"$DIALOG_CANCEL")
+					retval=99
+					;;
+				"$DIALOG_ESC")
+					exit 1
+					;;
+			esac
+		;;
+	"$DIALOG_HELP")
+		if [[ -f "$HELP_FILE" ]]; then
+			"$DIALOG" --clear \
+				--msgbox "$(cat "$HELP_FILE")" 30 40
+				case $? in
+					"$DIALOG_OK")
+						retval=99
+						;;
+				esac
+		else
+			"$DIALOG" --clear \
+				--msgbox "HELP NOT FOUND" 10 30
+				case $? in
+					"$DIALOG_OK")
+						exit 22
+						;;
+				esac
+		fi
+		;;
+	"$DIALOG_ERROR")
+		"$DIALOG" --clear \
+			--msgbox "ERROR :: Code 254" 10 30
+			case $? in
+				"$DIALOG_OK")
+					exit 254
+					;;
+			esac
+		;;
+	"$DIALOG_ESC")
+		if [[ -n "$RESULT" ]]; then
+			break
+		else
+			exit 1
+		fi
+		;;
+esac

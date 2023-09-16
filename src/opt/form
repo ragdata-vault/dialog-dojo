@@ -43,12 +43,16 @@ written out.
 manual
 # ==================================================================
 . /usr/local/lib/dd/setup-vars
-
-
+. /usr/local/lib/dd/dft-std
 
 retval=0
 
 while [[ $retval -ne 1 ]] && [[ $retval -ne 254 ]]
 do
-
+	RESULT=$("$DIALOG" "${DIALOG_OPTS}" \
+		--help-label "${HELP_LABEL:-Help}" \
+		--form "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
+		"${DIALOG_ITEMS[@]}" 3>&1 1>&2 2>&3)
+	retval=$?
+	. /usr/local/lib/dd/handle-result
 done
