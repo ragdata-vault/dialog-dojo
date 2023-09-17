@@ -60,18 +60,32 @@ If you like this repository, please give it a ⭐ (it really does help)
 
 ## ⭐ [Project Overview](#toc)
 
+This project gives you everything you need to get the most out of the linux `dialog` command and makes it easy to create fantastic-looking TUI's (Text User-Interfaces) for your BASH Scripts!
+
+<a href="https://raw.githubusercontent.com/Ragdata/media/master/project/dialog-dojo/ss-installer.png" target="_blank"><img src="https://raw.githubusercontent.com/Ragdata/media/master/project/dialog-dojo/ss-installer.png" /></a>
 
 ### ❓ [What's Included?](#toc)
 
-
-
+* ✅ Automated Installer
+* ✅ 6 Themes + Theme Installer
+* ✅ **29 Configurable, Reusable, Dialog Box Files**
+* ✅ Python wrapper so you can use them in your python projects as well!
 ### 📂 [Installation](#toc)
 
-Run the code snippet below in your terminal to setup and install everything automagically - ready to go in 2 minutes!
+The first thing you need to do is `su` to root:
+
+```shell
+sudo su -l
+```
+The `-l` ensures that you're actually logging in as root and therefore getting all of the environmental benefits that are configured there.
+
+Then, run the code snippet below in your terminal to setup and install everything automagically - ready to go in seconds!
 
 ```shell
 bash <(curl -sfLS https://raw.githubusercontent.com/Ragdata/dialog-dojo/master/install.sh)
 ```
+
+For more documentation, including more comprehensive installation docs, see the [**Repository Documentation**](doc/README.md)
 
 [//]: # ([`^ Top`]&#40;#toc&#41;)
 [//]: # (### 📛 [Badges]&#40;#toc&#41;)
