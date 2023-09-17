@@ -30,6 +30,14 @@ fi
 # ==================================================================
 # VARIABLES
 # ==================================================================
+if [[ -f /usr/local/lib/dd/setup-vars ]]; then
+	source /usr/local/lib/dd/setup-vars
+elif [[ -f ./src/lib/setup-vars ]]; then
+	source ./src/lib/setup-vars
+else
+	echo "Unable to Load Critical Library File ... exiting ..."
+	exit 1
+fi
 #
 # PACKAGE VERSION
 #
@@ -348,13 +356,18 @@ install::menu()
 
 	status=$?
 
-	if [[ "$status" = 0 ]]; then
+	if [[ "$status" == "$DIALOG_OK" ]]; then
 		case "$option" in
-			"Install") install::install;;
+			"Install") install::install | dialog --title "INSTALL CLUSTER KIT" --backtitle "CLUSTER-KIT INSTALLER" --clear --programbox 50 70;
+						case "$?" in
+							"$DIALOG_OK")
+								install::returnQuit
+								;;
+						esac;;
 			"Uninstall") install::uninstall;;
 			"Update") install::install;;
 			"About") install::version verbose;;
-			"Quit") install::quit;;
+			"Quit") exit 0;;
 		esac
 	fi
 }
@@ -372,8 +385,8 @@ while true
 do
 	case "$1" in
 		-v|--version)
-			if [[ -n "${2}" ]]; then
-				install::version "${2}"
+			if [[ -n "$OPTARG" ]]; then
+				install::version "$OPTARG"
 				shift 2
 			else
 				install::version
