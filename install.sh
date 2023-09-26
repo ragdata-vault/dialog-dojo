@@ -358,12 +358,8 @@ install::menu()
 
 	if [[ "$status" == "$DIALOG_OK" ]]; then
 		case "$option" in
-			"Install") install::install | dialog --title "INSTALL CLUSTER KIT" --backtitle "CLUSTER-KIT INSTALLER" --clear --programbox 50 70;
-						case "$?" in
-							"$DIALOG_OK")
-								install::returnQuit
-								;;
-						esac;;
+			"Install") install::install
+					   install::returnQuit;;
 			"Uninstall") install::uninstall;;
 			"Update") install::install;;
 			"About") install::version verbose;;
