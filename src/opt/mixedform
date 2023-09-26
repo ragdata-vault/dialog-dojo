@@ -32,5 +32,5 @@ RESULT=$("$DIALOG" --insecure --ok-label "${OK_LABEL:-OK}" \
 	--cancel-label "${CANCEL_LABEL:-Cancel}" \
 	--backtitle "${DIALOG_BACKTITLE}" \
 	--title "${DIALOG_TITLE}" --cr-wrap --clear "$@" \
-	--mixedform "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
+	--mixedform "\n${DIALOG_TEXT}\n" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
 	"${DIALOG_ITEMS[@]}" 3>&1 1>&2 2>&3)

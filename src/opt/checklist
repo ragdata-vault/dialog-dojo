@@ -38,5 +38,5 @@ RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \
 	--cancel-label "${CANCEL_LABEL:-Cancel}" \
 	--backtitle "${DIALOG_BACKTITLE}" \
 	--title "${DIALOG_TITLE}" --cr-wrap --clear "$@" \
-	--checklist "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
+	--checklist "\n${DIALOG_TEXT}\n" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
 	"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)

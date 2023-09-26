@@ -33,4 +33,4 @@ RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \
 	--cancel-label "${CANCEL_LABEL:-Cancel}" \
 	--backtitle "${DIALOG_BACKTITLE}" \
 	--title "${DIALOG_TITLE}" --cr-wrap --clear "$@" \
-	--timebox "${DIALOG_TEXT}" "${HEIGHT:-15}" "${WIDTH:-50}" "${HOUR:-12}" "${MINUTE:-0}" "${SECOND:-0}" 3>&1 1>&2 2>&3)
+	--timebox "\n${DIALOG_TEXT}\n" "${HEIGHT:-15}" "${WIDTH:-50}" "${HOUR:-12}" "${MINUTE:-0}" "${SECOND:-0}" 3>&1 1>&2 2>&3)
