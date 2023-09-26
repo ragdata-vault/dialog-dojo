@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# menu-2
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         menu-2
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
+"
+--menu text height width menu-height [ tag item ] ...
+
+As  its  name  suggests,  a menu box is a dialog box that can be
+used to present a list of choices in the form of a menu for  the
+user to choose.  Choices are displayed in the order given.  Each
+menu entry consists of a tag string and an item string.  The tag
+gives  the entry a name to distinguish it from the other entries
+in the menu.  The item is a short description of the option that
+the  entry  represents.   The  user  can  move  between the menu
+entries by pressing the cursor keys, the first letter of the tag
+as  a  hot-key, or the number keys 1 through 9.  There are menu-
+height entries displayed in the menu at one time, but  the  menu
+will be scrolled if there are more entries than that.
+
+On  exit  the  tag  of  the chosen menu entry will be printed on
+dialog's output.  If the '--help-button' option  is  given,  the
+corresponding  help text will be printed if the user selects the
+help button.
+"
+manual
+# ==================================================================
+. /usr/local/lib/dd/setup-vars
+
+RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \
+	--no-cancel --extra-button --extra-label "${CANCEL_LABEL:-Cancel}" \
+	--backtitle "${DIALOG_BACKTITLE}" \
+	--title "${DIALOG_TITLE}" --cr-wrap --clear "$@" \
+	--menu "\n${DIALOG_TEXT}\n" "${HEIGHT:-15}" "${WIDTH:-50}" "${MENU_HEIGHT:-5}" \
+	"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)

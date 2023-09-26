@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091,SC2034,SC2188
+# ==================================================================
+# checklist-2
+# ==================================================================
+# Dialog Dojo Dialog Box
+#
+# File:         checklist-2
+# Author:       Ragdata
+# Date:         15/09/2023
+# License:      MIT License
+# Copyright:    Copyright © 2023 Darren (Ragdata) Poulton
+# ==================================================================
+<<manual
+"
+--checklist text height width list-height [ tag item status ] ...
+
+A checklist box is similar to a menu  box;  there  are  multiple
+entries  presented in the form of a menu.  Another difference is
+that you can indicate which  entry  is  currently  selected,  by
+setting  its  status to on.  Instead of choosing one entry among
+the entries, each entry can be turned on or  off  by  the  user.
+The initial on/off state of each entry is specified by status.
+
+On  exit,  a  list  of the tag strings of those entries that are
+turned on will be printed on dialog's output.
+
+If the '--separate-output' option is not given, the strings will
+be  quoted  as  needed to make it simple for scripts to separate
+them.  By default, this uses double-quotes (as needed).  See the
+'--single-quoted' option, which modifies the quoting behavior.
+"
+manual
+# ==================================================================
+. /usr/local/lib/dd/setup-vars
+
+RESULT=$("$DIALOG" --ok-label "${OK_LABEL:-OK}" \
+	--no-cancel --extra-button --extra-label "${CANCEL_LABEL:-Cancel}" \
+	--backtitle "${DIALOG_BACKTITLE}" \
+	--title "${DIALOG_TITLE}" --cr-wrap --clear "$@" \
+	--checklist "\n${DIALOG_TEXT}\n" "${HEIGHT:-15}" "${WIDTH:-50}" "${LIST_HEIGHT:-5}" \
+	"${DIALOG_OPTIONS[@]}" 3>&1 1>&2 2>&3)
